@@ -128,7 +128,7 @@ def get_readable_message():
                 globals()['PAGE_NO'] -= 1
             start = COUNT
         for index, download in enumerate(list(download_dict.values())[start:], start=1):
-            msg += f"<b>🗂 Filename:</b> <code>{download.name()}</code>"
+            msg += f"<b>🗂 Filename:</b> <code>{download.name()}</code>\n"
             msg += f"\n<b>🚦 Status:</b> <i>{download.status()}</i>"
             if download.status() not in [
                 MirrorStatus.STATUS_ARCHIVING,
@@ -137,20 +137,20 @@ def get_readable_message():
             ]:
                 msg += f"\n<code>{get_progress_bar_string(download)} {download.progress()}</code>"
                 if download.status() == MirrorStatus.STATUS_CLONING:
-                    msg += f"\n<b>♻️ Cloned:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>"
+                    msg += f"\n<b>♻️ Cloned:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>\n"
                 elif download.status() == MirrorStatus.STATUS_UPLOADING:
-                    msg += f"\n<b>📤 Uploaded:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>"
+                    msg += f"\n<b>📤 Uploaded:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>\n"
                 else:
-                    msg += f"\n<b>📥 Downloaded:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>"
-                msg += f"\n<b>Speed:</b> <code>{download.speed()}</code> <b>ETA:</b> <code>{download.eta()}</code>"
+                    msg += f"\n<b>📥 Downloaded:</b> <code>{get_readable_file_size(download.processed_bytes())}</code> of <code>{download.size()}</code>\n"
+                msg += f"\n<b>Speed:</b> <code>{download.speed()}</code>\n <b>ETA:</b> <code>{download.eta()}</code>\n"
                 try:
-                    msg += f"\n<b>🌱 Seeders:</b> <code>{download.aria_download().num_seeders}</code>" \
-                           f" | <b>💠 Peers:</b> <code>{download.aria_download().connections}</code>"
+                    msg += f"\n<b>🌱 Seeders:</b> <code>{download.aria_download().num_seeders}</code>\n" \
+                           f" | <b>💠 Peers:</b> <code>{download.aria_download().connections}</code>\n"
                 except:
                     pass
                 try:
-                    msg += f"\n<b>🌱 Seeders:</b> <code>{download.torrent_info().num_seeds}</code>" \
-                           f" | <b>💀 Leechers:</b> <code>{download.torrent_info().num_leechs}</code>"
+                    msg += f"\n<b>🌱 Seeders:</b> <code>{download.torrent_info().num_seeds}</code>\n" \
+                           f" | <b>💀 Leechers:</b> <code>{download.torrent_info().num_leechs}</code>\n"
                 except:
                     pass
                 msg += f"\n<b>❌ To Cancel:</b> <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
