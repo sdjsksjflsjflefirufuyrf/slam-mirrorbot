@@ -248,9 +248,9 @@ class MirrorListener(listeners.MirrorListeners):
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                 msg += '\n<b>Type: </b><code>Folder</code>\n'
                 msg += f'\n<b>SubFolders: </b><code>{folders}</code>\n'
-                msg += f'\n<b>Files: </b><code>{files}</code>\n'
+                msg += f'\n<b>Files: </b><code>{files}</code>'
             else:
-                msg += f'\n<b>Type: </b><code>{typ}</code>\n'
+                msg += f'\n<b>Type: </b><code>{typ}</code>'
             buttons = button_build.ButtonMaker()
             if SHORTENER is not None and SHORTENER_API is not None:
                 surl = short_url(link)
